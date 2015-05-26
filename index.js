@@ -131,7 +131,7 @@ var Router = React.createClass({
           );
       }
 
-      return <div></div>;
+      return <View />;
   },
 
   render: function() {
