@@ -95,9 +95,14 @@ var Router = React.createClass({
 
     var Content = route.component;
 
+    var stylesArray = [styles.container, this.props.bgStyle];
+    if (this.state.hidden) {
+        stylesArray.push(styles.hiddenNavBar);
+    }
+
     return (
       <View
-        style={[styles.container, this.props.bgStyle]}
+        style={stylesArray}
         onStartShouldSetResponder={didStartDrag}
         onResponderMove={didMoveFinger}
         onResponderTerminationRequest={preventDefault}>
@@ -131,7 +136,7 @@ var Router = React.createClass({
           );
       }
 
-      return <View />;
+      return <View/>;
   },
 
   render: function() {
@@ -156,9 +161,11 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    marginTop: 64
+    marginTop: 64,
   },
+  hiddenNavBar: {
+    marginTop: 0,
+  }
 });
-
 
 module.exports = Router;
