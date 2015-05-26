@@ -20,9 +20,18 @@ var Router = React.createClass({
         name: null,
         index: null
       },
+      hidden: false,
       dragStartX: null,
       didSwitchView: null,
     }
+  },
+
+  hideNavBar: function() {
+      this.setState({ hidden: true });
+  },
+
+  showNavBar: function() {
+      this.setState({ hidden: false });
   },
 
   onWillFocus: function(route) {
@@ -62,8 +71,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -85,7 +94,7 @@ var Router = React.createClass({
     };
 
     var Content = route.component;
-    
+
     return (
       <View
         style={[styles.container, this.props.bgStyle]}
@@ -102,7 +111,27 @@ var Router = React.createClass({
         />
       </View>
     )
-    
+
+  },
+
+  renderNavBar: function() {
+      if (!this.state.hidden) {
+          return (
+              <NavBarContainer
+                style={this.props.headerStyle}
+                navigator={navigator}
+                currentRoute={this.state.route}
+                backButtonComponent={this.props.backButtonComponent}
+                rightCorner={this.props.rightCorner}
+                titleStyle={this.props.titleStyle}
+                toRoute={this.onForward}
+                toBack={this.onBack}
+                customAction={this.customAction}
+              />
+          );
+      }
+
+      return <div></div>;
   },
 
   render: function() {
@@ -113,17 +142,7 @@ var Router = React.createClass({
       <Navigator
         initialRoute={this.props.firstRoute}
         navigationBar={
-          <NavBarContainer
-            style={this.props.headerStyle}
-            navigator={navigator} 
-            currentRoute={this.state.route}
-            backButtonComponent={this.props.backButtonComponent}
-            rightCorner={this.props.rightCorner}
-            titleStyle={this.props.titleStyle}
-            toRoute={this.onForward}
-            toBack={this.onBack}
-            customAction={this.customAction}
-          />
+            this.renderNavBar()
         }
         renderScene={this.renderScene}
         onWillFocus={this.onWillFocus}
