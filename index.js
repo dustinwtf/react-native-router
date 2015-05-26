@@ -57,6 +57,11 @@ var Router = React.createClass({
 
     var goForward = function(route) {
       route.index = this.state.route.index + 1 || 1;
+      if (route.hideNavBar) {
+          this.setState({ hidden: true });
+      } else {
+          this.setState({ hidden: false });
+      }
       navigator.push(route);
     }.bind(this);
 
