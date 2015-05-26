@@ -112,6 +112,8 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          hideNavBar={this.hideNavBar}
+          showNavBar={this.showNavBar}
           customAction={customAction}
         />
       </View>
