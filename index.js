@@ -40,7 +40,7 @@ var Router = React.createClass({
 
   onBack: function(navigator) {
     if (this.state.route.index > 0) {
-      navigator.pop();
+      console.log(navigator.pop());
     }
   },
 
