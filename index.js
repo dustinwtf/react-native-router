@@ -20,7 +20,7 @@ var Router = React.createClass({
         name: null,
         index: null
       },
-      hidden: false,
+      hidden: this.props.hideNavBar || false,
       dragStartX: null,
       didSwitchView: null,
     }
