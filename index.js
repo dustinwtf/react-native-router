@@ -40,6 +40,13 @@ var Router = React.createClass({
 
   onBack: function(navigator) {
     if (this.state.route.index > 0) {
+      var routes = navigator.getCurrentRoutes();
+
+      if (routes[(this.state.route.index - 1)].hideNavBar) {
+          this.setState({ hidden: true });
+      } else {
+          this.setState({ hidden: false });
+      }
       navigator.pop();
     }
   },
@@ -54,8 +61,6 @@ var Router = React.createClass({
   },
 
   renderScene: function(route, navigator) {
-
-    console.log(navigator, navigator.getCurrentRoutes());
 
     var goForward = function(route) {
       route.index = this.state.route.index + 1 || 1;
