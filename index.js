@@ -42,8 +42,11 @@ var Router = React.createClass({
     if (this.state.route.index > 0) {
       var routes = navigator.getCurrentRoutes();
 
-      navigator.pop();
+      console.log('Current INDEX:', this.state.route.index);
+      console.log('Current Route:', routes[this.state.route.index]);
+      console.log('Route we are about to switch to:', routes[this.state.route.index]);
 
+      navigator.pop();
 
       if (routes[(this.state.route.index - 1)].hideNavBar) {
           this.setState({ hidden: true });
