@@ -42,12 +42,14 @@ var Router = React.createClass({
     if (this.state.route.index > 0) {
       var routes = navigator.getCurrentRoutes();
 
+      navigator.pop();
+
+
       if (routes[(this.state.route.index - 1)].hideNavBar) {
           this.setState({ hidden: true });
       } else {
           this.setState({ hidden: false });
       }
-      navigator.pop();
     }
   },
 
