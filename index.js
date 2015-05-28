@@ -42,10 +42,6 @@ var Router = React.createClass({
     if (this.state.route.index > 0) {
       var routes = navigator.getCurrentRoutes();
 
-      console.log('Current INDEX:', this.state.route.index);
-      console.log('Current Route:', routes[this.state.route.index]);
-      console.log('Route we are about to switch to:', routes[this.state.route.index]);
-
       navigator.pop();
 
       if (routes[(this.state.route.index - 1)].hideNavBar) {
@@ -76,6 +72,15 @@ var Router = React.createClass({
       }
       navigator.push(route);
     }.bind(this);
+
+    var replaceRoute = function(route) {
+      if (route.hideNavBar) {
+          this.setState({ hidden: true });
+      } else {
+          this.setState({ hidden: false });
+      }
+      navigator.replace(route);
+    };
 
     var goBackwards = function() {
       this.onBack(navigator);
@@ -129,6 +134,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          replaceRoute={replaceRoute}
           hideNavBar={this.hideNavBar}
           showNavBar={this.showNavBar}
           customAction={customAction}
