@@ -39,7 +39,6 @@ var Router = React.createClass({
   },
 
   onBack: function(navigator) {
-    console.log(Navigator.getCurrentRoutes());
     if (this.state.route.index > 0) {
       navigator.pop();
     }
@@ -55,6 +54,9 @@ var Router = React.createClass({
   },
 
   renderScene: function(route, navigator) {
+
+    console.log(Navigator.getContext(this));
+    console.log(Navigator.getContext(this).getCurrentRoutes());
 
     var goForward = function(route) {
       route.index = this.state.route.index + 1 || 1;
