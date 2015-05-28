@@ -80,7 +80,7 @@ var Router = React.createClass({
           this.setState({ hidden: false });
       }
       navigator.replace(route);
-    };
+    }.bind(this);
 
     var goBackwards = function() {
       this.onBack(navigator);
