@@ -39,8 +39,9 @@ var Router = React.createClass({
   },
 
   onBack: function(navigator) {
+    console.log(Navigator.getCurrentRoutes());
     if (this.state.route.index > 0) {
-      console.log(navigator.pop());
+      navigator.pop();
     }
   },
 
