@@ -55,8 +55,7 @@ var Router = React.createClass({
 
   renderScene: function(route, navigator) {
 
-    console.log(Navigator.getContext(this));
-    console.log(Navigator.getContext(this).getCurrentRoutes());
+    console.log(navigator, navigator.getContext(this), navigator.getCurrentRoutes(), Navigator.getContext(this).getCurrentRoutes());
 
     var goForward = function(route) {
       route.index = this.state.route.index + 1 || 1;
